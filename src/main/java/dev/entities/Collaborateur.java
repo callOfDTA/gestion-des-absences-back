@@ -46,6 +46,7 @@ public class Collaborateur {
 	@Column(name = "EMAIL")
 	private String email;
 
+	/** The password. */
 	@Column(name = "PASSWORD")
 	private String password;
 
@@ -75,6 +76,14 @@ public class Collaborateur {
 	@Column(name = "DEPARTEMENT")
 	private String departement;
 
+	/** The jour RTT. */
+	@Column(name = "JOUR_RTT")
+	private int jourRTT;
+
+	/** The jour conge paye. */
+	@Column(name = "JOUR_CONGE_PAYE")
+	private int jourCongePaye;
+
 	/**
 	 * Instantiates a new collaborateur.
 	 */
@@ -83,22 +92,40 @@ public class Collaborateur {
 	}
 
 	/**
+	 * Instantiates a new collaborateur.
+	 *
 	 * @param role
+	 *            the role
 	 * @param matricule
+	 *            the matricule
 	 * @param nom
+	 *            the nom
 	 * @param prenom
+	 *            the prenom
 	 * @param email
+	 *            the email
 	 * @param password
+	 *            the password
 	 * @param dateNaissance
+	 *            the date naissance
 	 * @param sexe
+	 *            the sexe
 	 * @param adresse
+	 *            the adresse
 	 * @param photo
+	 *            the photo
 	 * @param subalternes
+	 *            the subalternes
 	 * @param departement
+	 *            the departement
+	 * @param jourRTT
+	 *            the jour RTT
+	 * @param jourCongePaye
+	 *            the jour conge paye
 	 */
 	public Collaborateur(Role role, String matricule, String nom, String prenom, String email, String password,
 			String dateNaissance, Sexe sexe, String adresse, String photo, ArrayList<String> subalternes,
-			String departement) {
+			String departement, int jourRTT, int jourCongePaye) {
 		super();
 		this.role = role;
 		this.matricule = matricule;
@@ -112,6 +139,8 @@ public class Collaborateur {
 		this.photo = photo;
 		this.subalternes = subalternes;
 		this.departement = departement;
+		this.jourRTT = jourRTT;
+		this.jourCongePaye = jourCongePaye;
 	}
 
 	/**
@@ -299,14 +328,16 @@ public class Collaborateur {
 	/**
 	 * Sets the departements.
 	 *
-	 * @param departements
-	 *            the departements to set
+	 * @param departement
+	 *            the new departement
 	 */
 	public void setDepartement(String departement) {
 		this.departement = departement;
 	}
 
 	/**
+	 * Gets the password.
+	 *
 	 * @return the password
 	 */
 	public String getPassword() {
@@ -314,6 +345,8 @@ public class Collaborateur {
 	}
 
 	/**
+	 * Sets the password.
+	 *
 	 * @param password
 	 *            the password to set
 	 */
@@ -322,6 +355,8 @@ public class Collaborateur {
 	}
 
 	/**
+	 * Gets the subalternes.
+	 *
 	 * @return the subalternes
 	 */
 	public ArrayList<String> getSubalternes() {
@@ -329,6 +364,8 @@ public class Collaborateur {
 	}
 
 	/**
+	 * Sets the subalternes.
+	 *
 	 * @param subalternes
 	 *            the subalternes to set
 	 */
@@ -336,4 +373,41 @@ public class Collaborateur {
 		this.subalternes = subalternes;
 	}
 
+	/**
+	 * Gets the jour RTT.
+	 *
+	 * @return the jour RTT
+	 */
+	public int getJourRTT() {
+		return jourRTT;
+	}
+
+	/**
+	 * Sets the jour RTT.
+	 *
+	 * @param jourRTT
+	 *            the new jour RTT
+	 */
+	public void setJourRTT(int jourRTT) {
+		this.jourRTT = jourRTT;
+	}
+
+	/**
+	 * Gets the jour conge paye.
+	 *
+	 * @return the jour conge paye
+	 */
+	public int getJourCongePaye() {
+		return jourCongePaye;
+	}
+
+	/**
+	 * Sets the jour conge paye.
+	 *
+	 * @param jourCongePaye
+	 *            the new jour conge paye
+	 */
+	public void setJourCongePaye(int jourCongePaye) {
+		this.jourCongePaye = jourCongePaye;
+	}
 }
