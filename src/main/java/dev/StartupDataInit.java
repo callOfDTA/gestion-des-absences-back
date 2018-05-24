@@ -48,11 +48,14 @@ public class StartupDataInit {
 				subalterne2, "Espionnage Anglais", 10, 20);
 
 		Collaborateur collab3 = new Collaborateur(Role.ADMINISTRATEUR, "S117", "Unknown", "John", "john117@soldat.us",
-				"shaker", "2503/08/19", Sexe.male, "SPARTAN", "../images/S117.jpg", subalterne3, "Militaire", 2, 8);
+				"shaker", "2503/08/19", Sexe.male, "SPARTAN",
+				"https://vignette.wikia.nocookie.net/halo/images/e/e5/John-117_H2A_transparant.png/revision/latest?cb=20141231173055",
+				subalterne3, "Militaire", 2, 8);
 
 		Collaborateur collab4 = new Collaborateur(Role.MANAGER, "N17", "Antonova", "Natacha",
-				"natacha.antonova@espion.ru", "shaker", "1946/07/31", Sexe.female, "KGB", "../images/N17.jpg",
-				subalterne3, "Militaire", 1, 2);
+				"natacha.antonova@espion.ru", "shaker", "1946/07/31", Sexe.female, "KGB",
+				"http://4.bp.blogspot.com/-Ol-DfJ1cgec/Tr0VYmCtiBI/AAAAAAAAAZU/cU1jzf56I-M/s640/61623_127880617264130_114664605252398_167802_2603692_n+-+Copie+%25282%2529.jpg",
+				subalterne3, "Espionnage Russe", 1, 2);
 
 		if (this.collaborateurRepo.count() <= 0) {
 			this.collaborateurRepo.save(collab1);
