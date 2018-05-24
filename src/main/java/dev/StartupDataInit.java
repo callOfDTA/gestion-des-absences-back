@@ -37,13 +37,15 @@ public class StartupDataInit {
 		subalterne2.add("O000");
 		ArrayList<String> subalterne3 = new ArrayList<String>();
 
-		Collaborateur collab1 = new Collaborateur(Role.EMPLOYE, "OSS177", "Bonisseurt De la Batte", "Hubert",
-				"hubert.bonisseur@espion.fr", "combat", "1918/06/14", Sexe.male, "DGSE", "../images/OSS117.jpg",
+		Collaborateur collab1 = new Collaborateur(Role.EMPLOYE, "OSS117", "Bonisseurt De la Batte", "Hubert",
+				"hubert.bonisseur@espion.fr", "combat", "1918/06/14", Sexe.male, "DGSE",
+				"http://www.programme-television.org/news-tv/OSS-117-Le-Caire-nid-d-espions-C8-Le-show-de-Jean-Dujardin-4484285",
 				subalterne1, "Espionnage Français", 50, 30);
 
 		Collaborateur collab2 = new Collaborateur(Role.EMPLOYE, "A007", "Bond", "James", "james.bond@espion.uk",
-				"shaker", "1937/11/07", Sexe.male, "MI7", "../images/007.jpg", subalterne2, "Espionnage Anglais", 10,
-				20);
+				"shaker", "1937/11/07", Sexe.male, "MI7",
+				"http://www.deslettres.fr/wp-content/uploads/2013/09/Sean-Connery-pas-envie-de-celebrer-les-50-ans-de-James-Bond_reference.png",
+				subalterne2, "Espionnage Anglais", 10, 20);
 
 		Collaborateur collab3 = new Collaborateur(Role.ADMINISTRATEUR, "S117", "Unknown", "John", "john117@soldat.us",
 				"shaker", "2503/08/19", Sexe.male, "SPARTAN", "../images/S117.jpg", subalterne3, "Militaire", 2, 8);
