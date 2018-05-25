@@ -77,8 +77,12 @@ public class Collaborateur {
 	private String departement;
 
 	/** The jour RTT. */
-	@Column(name = "JOUR_RTT")
-	private int jourRTT;
+	@Column(name = "JOUR_RTT_EMPLOYE")
+	private int jourRTTEmploye;
+
+	/** The jour RTT. */
+	@Column(name = "JOUR_RTT_EMPLOYEUR")
+	private int jourRTTEmployeur;
 
 	/** The jour conge paye. */
 	@Column(name = "JOUR_CONGE_PAYE")
@@ -92,40 +96,25 @@ public class Collaborateur {
 	}
 
 	/**
-	 * Instantiates a new collaborateur.
-	 *
 	 * @param role
-	 *            the role
 	 * @param matricule
-	 *            the matricule
 	 * @param nom
-	 *            the nom
 	 * @param prenom
-	 *            the prenom
 	 * @param email
-	 *            the email
 	 * @param password
-	 *            the password
 	 * @param dateNaissance
-	 *            the date naissance
 	 * @param sexe
-	 *            the sexe
 	 * @param adresse
-	 *            the adresse
 	 * @param photo
-	 *            the photo
 	 * @param subalternes
-	 *            the subalternes
 	 * @param departement
-	 *            the departement
-	 * @param jourRTT
-	 *            the jour RTT
+	 * @param jourRTTEmploye
+	 * @param jourRTTEmployeur
 	 * @param jourCongePaye
-	 *            the jour conge paye
 	 */
 	public Collaborateur(Role role, String matricule, String nom, String prenom, String email, String password,
 			String dateNaissance, Sexe sexe, String adresse, String photo, ArrayList<String> subalternes,
-			String departement, int jourRTT, int jourCongePaye) {
+			String departement, int jourRTTEmploye, int jourRTTEmployeur, int jourCongePaye) {
 		super();
 		this.role = role;
 		this.matricule = matricule;
@@ -139,7 +128,8 @@ public class Collaborateur {
 		this.photo = photo;
 		this.subalternes = subalternes;
 		this.departement = departement;
-		this.jourRTT = jourRTT;
+		this.jourRTTEmploye = jourRTTEmploye;
+		this.jourRTTEmployeur = jourRTTEmployeur;
 		this.jourCongePaye = jourCongePaye;
 	}
 
@@ -374,22 +364,33 @@ public class Collaborateur {
 	}
 
 	/**
-	 * Gets the jour RTT.
-	 *
-	 * @return the jour RTT
+	 * @return the jourRTTEmploye
 	 */
-	public int getJourRTT() {
-		return jourRTT;
+	public int getJourRTTEmploye() {
+		return jourRTTEmploye;
 	}
 
 	/**
-	 * Sets the jour RTT.
-	 *
-	 * @param jourRTT
-	 *            the new jour RTT
+	 * @param jourRTTEmploye
+	 *            the jourRTTEmploye to set
 	 */
-	public void setJourRTT(int jourRTT) {
-		this.jourRTT = jourRTT;
+	public void setJourRTTEmploye(int jourRTTEmploye) {
+		this.jourRTTEmploye = jourRTTEmploye;
+	}
+
+	/**
+	 * @return the jourRTTEmployeur
+	 */
+	public int getJourRTTEmployeur() {
+		return jourRTTEmployeur;
+	}
+
+	/**
+	 * @param jourRTTEmployeur
+	 *            the jourRTTEmployeur to set
+	 */
+	public void setJourRTTEmployeur(int jourRTTEmployeur) {
+		this.jourRTTEmployeur = jourRTTEmployeur;
 	}
 
 	/**

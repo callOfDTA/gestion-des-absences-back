@@ -40,12 +40,15 @@ public class CollaborateurController {
 		Collaborateur[] response = rt.getForObject(API_URL, Collaborateur[].class);
 
 		Stream.of(response).forEach(c -> {
-			collabRepo.save(c);
+			c.setJourCongePaye(25);
+			c.setJourRTTEmploye(6);
+			c.setJourRTTEmployeur(6);
 			if (c.getSubalternes().isEmpty()) {
 				c.setRole(Role.EMPLOYE);
 			} else {
 				c.setRole(Role.MANAGER);
 			}
+			collabRepo.save(c);
 		});
 		return ResponseEntity.ok(response);
 	}
