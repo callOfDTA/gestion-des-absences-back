@@ -108,13 +108,10 @@ public class Collaborateur {
 	 * @param photo
 	 * @param subalternes
 	 * @param departement
-	 * @param jourRTTEmploye
-	 * @param jourRTTEmployeur
-	 * @param jourCongePaye
 	 */
 	public Collaborateur(Role role, String matricule, String nom, String prenom, String email, String password,
 			String dateNaissance, Sexe sexe, String adresse, String photo, ArrayList<String> subalternes,
-			String departement, int jourRTTEmploye, int jourRTTEmployeur, int jourCongePaye) {
+			String departement) {
 		super();
 		this.role = role;
 		this.matricule = matricule;
@@ -128,9 +125,6 @@ public class Collaborateur {
 		this.photo = photo;
 		this.subalternes = subalternes;
 		this.departement = departement;
-		this.jourRTTEmploye = jourRTTEmploye;
-		this.jourRTTEmployeur = jourRTTEmployeur;
-		this.jourCongePaye = jourCongePaye;
 	}
 
 	/**

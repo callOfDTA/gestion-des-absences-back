@@ -40,22 +40,22 @@ public class StartupDataInit {
 		Collaborateur collab1 = new Collaborateur(Role.EMPLOYE, "OSS117", "Bonisseurt De la Batte", "Hubert",
 				"hubert.bonisseur@espion.fr", "combat", "1918/06/14", Sexe.male, "DGSE",
 				"http://www.programme-television.org/news-tv/OSS-117-Le-Caire-nid-d-espions-C8-Le-show-de-Jean-Dujardin-4484285",
-				subalterne1, "Espionnage Français", 50, 30);
+				subalterne1, "Espionnage Français");
 
 		Collaborateur collab2 = new Collaborateur(Role.EMPLOYE, "A007", "Bond", "James", "james.bond@espion.uk",
 				"shaker", "1937/11/07", Sexe.male, "MI7",
 				"http://www.deslettres.fr/wp-content/uploads/2013/09/Sean-Connery-pas-envie-de-celebrer-les-50-ans-de-James-Bond_reference.png",
-				subalterne2, "Espionnage Anglais", 10, 20);
+				subalterne2, "Espionnage Anglais");
 
 		Collaborateur collab3 = new Collaborateur(Role.ADMINISTRATEUR, "S117", "Unknown", "John", "john117@soldat.us",
 				"shaker", "2503/08/19", Sexe.male, "SPARTAN",
 				"https://vignette.wikia.nocookie.net/halo/images/e/e5/John-117_H2A_transparant.png/revision/latest?cb=20141231173055",
-				subalterne3, "Militaire", 2, 8);
+				subalterne3, "Militaire");
 
 		Collaborateur collab4 = new Collaborateur(Role.MANAGER, "N17", "Antonova", "Natacha",
 				"natacha.antonova@espion.ru", "shaker", "1946/07/31", Sexe.female, "KGB",
 				"http://4.bp.blogspot.com/-Ol-DfJ1cgec/Tr0VYmCtiBI/AAAAAAAAAZU/cU1jzf56I-M/s640/61623_127880617264130_114664605252398_167802_2603692_n+-+Copie+%25282%2529.jpg",
-				subalterne3, "Espionnage Russe", 1, 2);
+				subalterne3, "Espionnage Russe");
 
 		if (this.collaborateurRepo.count() <= 0) {
 			this.collaborateurRepo.save(collab1);
