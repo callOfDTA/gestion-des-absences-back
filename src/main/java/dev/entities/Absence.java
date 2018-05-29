@@ -1,7 +1,5 @@
 package dev.entities;
 
-import java.time.ZonedDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -28,15 +26,15 @@ public class Absence {
 	private Integer id;
 
 	/** The date debut. */
-	@Column(name = "DATE_DEBUT", nullable = false)
-	private ZonedDateTime dateDebut;
+	@Column(name = "DATE_DEBUT")
+	private String dateDebut;
 
 	/** The date fin. */
-	@Column(name = "DATE_FIN", nullable = false)
-	private ZonedDateTime dateFin;
+	@Column(name = "DATE_FIN")
+	private String dateFin;
 
 	/** The type conge. */
-	@Column(name = "TYPE_CONGE", nullable = false)
+	@Column(name = "TYPE_CONGE")
 	@Enumerated(EnumType.STRING)
 	private CongeEnum typeConge;
 
@@ -45,12 +43,12 @@ public class Absence {
 	private String motif;
 
 	/** The statut. */
-	@Column(name = "STATUT", nullable = false)
+	@Column(name = "STATUT")
 	@Enumerated(EnumType.STRING)
 	private StatutEnum statut;
 
 	@ManyToOne
-	@JoinColumn(name = "COLLABORATEUR_ID", nullable = false)
+	@JoinColumn(name = "COLLABORATEUR_ID")
 	private Collaborateur collaborateur;
 
 	/**
@@ -59,7 +57,7 @@ public class Absence {
 	public Absence() {
 	}
 
-	public Absence(ZonedDateTime dateDebut, ZonedDateTime dateFin, CongeEnum typeConge, String motif, StatutEnum statut,
+	public Absence(String dateDebut, String dateFin, CongeEnum typeConge, String motif, StatutEnum statut,
 			Collaborateur collaborateur) {
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
@@ -93,7 +91,7 @@ public class Absence {
 	 *
 	 * @return the date debut
 	 */
-	public ZonedDateTime getDateDebut() {
+	public String getDateDebut() {
 		return dateDebut;
 	}
 
@@ -103,7 +101,7 @@ public class Absence {
 	 * @param dateDebut
 	 *            the new date debut
 	 */
-	public void setDateDebut(ZonedDateTime dateDebut) {
+	public void setDateDebut(String dateDebut) {
 		this.dateDebut = dateDebut;
 	}
 
@@ -112,7 +110,7 @@ public class Absence {
 	 *
 	 * @return the date fin
 	 */
-	public ZonedDateTime getDateFin() {
+	public String getDateFin() {
 		return dateFin;
 	}
 
@@ -122,7 +120,7 @@ public class Absence {
 	 * @param dateFin
 	 *            the new date fin
 	 */
-	public void setDateFin(ZonedDateTime dateFin) {
+	public void setDateFin(String dateFin) {
 		this.dateFin = dateFin;
 	}
 
