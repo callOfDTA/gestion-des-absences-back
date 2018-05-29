@@ -46,6 +46,12 @@ public class AbsenceController {
 	public Absence absenceParId(@PathVariable("id") Integer absenceId) {
 		return absenceRepo.findById(absenceId);
 	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
+	@ResponseBody
+	public void suppressionabsenceParId(@PathVariable("id") Integer absenceId) {
+		absenceRepo.delete(absenceRepo.findById(absenceId));
+	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/nouveau", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> ajoutAbsence(@RequestBody Absence nouvAbs) {
