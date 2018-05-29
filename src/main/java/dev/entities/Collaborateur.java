@@ -127,6 +127,27 @@ public class Collaborateur {
 		this.departement = departement;
 	}
 
+	public Collaborateur(Role role, String matricule, String nom, String prenom, String email, String password,
+			String dateNaissance, Sexe sexe, String adresse, String photo, ArrayList<String> subalternes,
+			String departement, int jourRTTEmploye, int jourRTTEmployeur, int jourCongePaye) {
+		super();
+		this.role = role;
+		this.matricule = matricule;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.password = password;
+		this.dateNaissance = dateNaissance;
+		this.sexe = sexe;
+		this.adresse = adresse;
+		this.photo = photo;
+		this.subalternes = subalternes;
+		this.departement = departement;
+		this.jourRTTEmploye = jourRTTEmploye;
+		this.jourRTTEmployeur = jourRTTEmployeur;
+		this.jourCongePaye = jourCongePaye;
+	}
+
 	/**
 	 * Gets the role.
 	 *
