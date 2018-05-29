@@ -1,7 +1,5 @@
 package dev;
 
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,30 +62,18 @@ public class StartupDataInit {
 			this.collaborateurRepo.save(collab4);
 		}
 
-		ZoneId zoneFr = ZoneId.of("UTC+1");
-		ZoneId zoneUK = ZoneId.of("UTC+0");
-		ZoneId zoneUSNYC = ZoneId.of("UTC-5");
-
-		// ZonedDateTime.of(Année, Mois, Jour, Heure, Minute, Seconde,
-		// Nanoseconde, Zone);
 		if (this.absenceRepo.count() <= 0) {
-			this.absenceRepo.save(new Absence(ZonedDateTime.of(2018, 6, 5, 00, 00, 00, 0000, zoneFr),
-					ZonedDateTime.of(2018, 6, 10, 00, 00, 00, 00, zoneFr), CongeEnum.RTT, "VACANCES !!!",
+			this.absenceRepo.save(new Absence("2018-06-05", "2018-06-10", CongeEnum.RTT, "VACANCES !!!",
 					StatutEnum.EN_ATTENTE_VALIDATION, collab1));
-			this.absenceRepo.save(new Absence(ZonedDateTime.of(2018, 5, 15, 00, 00, 00, 0000, zoneFr),
-					ZonedDateTime.of(2018, 5, 30, 00, 00, 00, 00, zoneFr), CongeEnum.CONGE_PAYE, "Pitié, je me meurs",
+			this.absenceRepo.save(new Absence("2018-06-05", "2018-06-10", CongeEnum.CONGE_PAYE, "Pitié, je me meurs",
 					StatutEnum.INITIALE, collab1));
-			this.absenceRepo.save(new Absence(ZonedDateTime.of(2018, 9, 2, 00, 00, 00, 0000, zoneFr),
-					ZonedDateTime.of(2018, 9, 16, 00, 00, 00, 00, zoneFr), CongeEnum.CONGE_SS,
+			this.absenceRepo.save(new Absence("2018-06-05", "2018-06-10", CongeEnum.CONGE_SANS_SOLDE,
 					"Allons drager la donzelle", StatutEnum.REJETEE, collab1));
-			this.absenceRepo.save(new Absence(ZonedDateTime.of(1964, 12, 19, 00, 00, 00, 0000, zoneUK),
-					ZonedDateTime.of(1964, 12, 26, 00, 00, 00, 00, zoneUK), CongeEnum.CONGE_PAYE,
+			this.absenceRepo.save(new Absence("2018-06-05", "2018-06-10", CongeEnum.CONGE_PAYE,
 					"Allons siroter un cockail martini", StatutEnum.VALIDEE, collab2));
-			this.absenceRepo.save(new Absence(ZonedDateTime.of(1965, 1, 2, 00, 00, 00, 0000, zoneUK),
-					ZonedDateTime.of(1965, 1, 10, 00, 00, 00, 00, zoneUK), CongeEnum.CONGE_SS, "Petit repos à Londre",
-					StatutEnum.EN_ATTENTE_VALIDATION, collab2));
-			this.absenceRepo.save(new Absence(ZonedDateTime.of(2018, 9, 21, 00, 00, 00, 0000, zoneUSNYC),
-					ZonedDateTime.of(2543, 9, 23, 00, 00, 00, 00, zoneUSNYC), CongeEnum.CONGE_SS,
+			this.absenceRepo.save(new Absence("2018-06-05", "2018-06-10", CongeEnum.CONGE_SANS_SOLDE,
+					"Petit repos à Londre", StatutEnum.EN_ATTENTE_VALIDATION, collab2));
+			this.absenceRepo.save(new Absence("2018-06-05", "2018-06-10", CongeEnum.CONGE_SANS_SOLDE,
 					"Petite pause entre 2 fights contre des convenants", StatutEnum.INITIALE, collab3));
 		}
 	}
