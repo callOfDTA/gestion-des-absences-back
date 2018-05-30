@@ -21,6 +21,7 @@ import dev.entities.Absence;
 import dev.entities.CongeEnum;
 import dev.entities.StatutEnum;
 import dev.repository.AbsenceRepository;
+import dev.repository.CollaborateurRepository;
 
 @RestController()
 @CrossOrigin
@@ -29,6 +30,9 @@ public class AbsenceController {
 
 	@Autowired
 	private AbsenceRepository absenceRepo;
+
+	@Autowired
+	private CollaborateurRepository collabRepo;
 
 	@GetMapping
 	public List<Absence> getListAbsence() {
@@ -46,15 +50,15 @@ public class AbsenceController {
 	public Absence absenceParId(@PathVariable("id") Integer absenceId) {
 		return absenceRepo.findById(absenceId);
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	@ResponseBody
 	public void suppressionabsenceParId(@PathVariable("id") Integer absenceId) {
 		absenceRepo.delete(absenceRepo.findById(absenceId));
 	}
 
-	@RequestMapping(method = RequestMethod.POST, path = "/nouveau", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> ajoutAbsence(@RequestBody Absence nouvAbs) {
+	@RequestMapping(method = RequestMethod.POST, path = "/{matricule}/nouvelle", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> ajoutAbsence(@RequestBody Absence nouvAbs, @PathVariable("matricule") String matricule) {
 
 		LocalDate tmp = LocalDate.now();
 		LocalDate debut = LocalDate.parse(nouvAbs.getDateDebut(), DateTimeFormatter.ISO_DATE);
@@ -74,6 +78,7 @@ public class AbsenceController {
 		}
 
 		nouvAbs.setStatut(StatutEnum.INITIALE);
+		nouvAbs.setCollaborateur(collabRepo.findCollaborateurByMatricule(matricule));
 		absenceRepo.save(nouvAbs);
 		return ResponseEntity.ok(nouvAbs);
 	}
