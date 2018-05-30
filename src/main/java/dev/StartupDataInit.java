@@ -10,17 +10,22 @@ import org.springframework.stereotype.Component;
 import dev.entities.Absence;
 import dev.entities.Collaborateur;
 import dev.entities.CongeEnum;
+import dev.entities.JourFerie;
 import dev.entities.Role;
 import dev.entities.Sexe;
 import dev.entities.StatutEnum;
 import dev.repository.AbsenceRepository;
 import dev.repository.CollaborateurRepository;
+import dev.repository.JourFerieRepository;
 
 @Component
 public class StartupDataInit {
 
 	@Autowired
 	CollaborateurRepository collaborateurRepo;
+
+	@Autowired
+	JourFerieRepository jfRepo;
 
 	@Autowired
 	AbsenceRepository absenceRepo;
@@ -60,6 +65,19 @@ public class StartupDataInit {
 			this.collaborateurRepo.save(collab2);
 			this.collaborateurRepo.save(collab3);
 			this.collaborateurRepo.save(collab4);
+		}
+
+		if (this.jfRepo.count() <= 0) {
+			this.jfRepo.save(new JourFerie("2018/01/01", "Jour de l'an"));
+			this.jfRepo.save(new JourFerie("2018/04/02", "Lundi de Pâques"));
+			this.jfRepo.save(new JourFerie("2018/05/01", "Fêtes du travail"));
+			this.jfRepo.save(new JourFerie("2018/05/08", "Victoire 1945"));
+			this.jfRepo.save(new JourFerie("2018/05/10", "L'Ascension"));
+			this.jfRepo.save(new JourFerie("2018/05/21", "Lundi de Pentecôte"));
+			this.jfRepo.save(new JourFerie("2018/07/14", "14 Juillet"));
+			this.jfRepo.save(new JourFerie("2018/11/01", "Toussaint"));
+			this.jfRepo.save(new JourFerie("2018/11/11", "Armistice 1918"));
+			this.jfRepo.save(new JourFerie("2018/12/25", "Noël"));
 		}
 
 		if (this.absenceRepo.count() <= 0) {

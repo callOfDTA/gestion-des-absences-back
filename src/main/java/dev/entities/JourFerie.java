@@ -2,8 +2,6 @@ package dev.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,11 +24,6 @@ public class JourFerie {
 	@Column(name = "DATE")
 	private String date;
 
-	/** The jour. */
-	@Column(name = "TYPE_CONGE")
-	@Enumerated(EnumType.STRING)
-	private JourEnum jour;
-
 	/** The commentaire. */
 	@Column(name = "COMMENTAIRE")
 	private String commentaire;
@@ -52,10 +45,9 @@ public class JourFerie {
 	 * @param commentaire
 	 *            the commentaire
 	 */
-	public JourFerie(String date, JourEnum jour, String commentaire) {
+	public JourFerie(String date, String commentaire) {
 		super();
 		this.date = date;
-		this.jour = jour;
 		this.commentaire = commentaire;
 	}
 
@@ -102,19 +94,6 @@ public class JourFerie {
 	 *
 	 * @return the jour
 	 */
-	public JourEnum getJour() {
-		return jour;
-	}
-
-	/**
-	 * Sets the jour.
-	 *
-	 * @param jour
-	 *            the new jour
-	 */
-	public void setJour(JourEnum jour) {
-		this.jour = jour;
-	}
 
 	/**
 	 * Gets the commentaire.
