@@ -57,7 +57,7 @@ public class ServiceTraitementDeNuit {
 						absenceRepo.save(abs);
 					}
 				}
-				if (abs.getTypeConge() == CongeEnum.RTT) {
+				if (abs.getTypeConge() == CongeEnum.RTT_EMPLOYE) {
 					if (abs.getCollaborateur().getJourRTTEmploye() - nbDays > 0) {
 						abs.setStatut(StatutEnum.EN_ATTENTE_VALIDATION);
 						absenceRepo.save(abs);
