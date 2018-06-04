@@ -47,6 +47,7 @@ public class Absence {
 	@Enumerated(EnumType.STRING)
 	private StatutEnum statut;
 
+	/** The collaborateur. */
 	@ManyToOne
 	@JoinColumn(name = "COLLABORATEUR_ID")
 	private Collaborateur collaborateur;
@@ -57,6 +58,22 @@ public class Absence {
 	public Absence() {
 	}
 
+	/**
+	 * Instantiates a new absence.
+	 *
+	 * @param dateDebut
+	 *            the date debut
+	 * @param dateFin
+	 *            the date fin
+	 * @param typeConge
+	 *            the type conge
+	 * @param motif
+	 *            the motif
+	 * @param statut
+	 *            the statut
+	 * @param collaborateur
+	 *            the collaborateur
+	 */
 	public Absence(String dateDebut, String dateFin, CongeEnum typeConge, String motif, StatutEnum statut,
 			Collaborateur collaborateur) {
 		this.dateDebut = dateDebut;
@@ -65,6 +82,14 @@ public class Absence {
 		this.motif = motif;
 		this.statut = statut;
 		this.collaborateur = collaborateur;
+	}
+
+	public Absence(String dateDebut, CongeEnum typeConge, String motif, StatutEnum statut) {
+		super();
+		this.dateDebut = dateDebut;
+		this.typeConge = typeConge;
+		this.motif = motif;
+		this.statut = statut;
 	}
 
 	/**
@@ -181,10 +206,21 @@ public class Absence {
 		this.statut = statut;
 	}
 
+	/**
+	 * Gets the collaborateur.
+	 *
+	 * @return the collaborateur
+	 */
 	public Collaborateur getCollaborateur() {
 		return collaborateur;
 	}
 
+	/**
+	 * Sets the collaborateur.
+	 *
+	 * @param collaborateur
+	 *            the new collaborateur
+	 */
 	public void setCollaborateur(Collaborateur collaborateur) {
 		this.collaborateur = collaborateur;
 	}
