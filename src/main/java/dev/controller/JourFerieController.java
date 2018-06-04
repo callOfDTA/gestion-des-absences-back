@@ -39,7 +39,7 @@ public class JourFerieController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	@ResponseBody
-	public void suppressionabsenceParId(@PathVariable("id") Integer ferieId) {
+	public void suppressionJourFerieParId(@PathVariable("id") Integer ferieId) {
 		jfRepo.delete(jfRepo.findById(ferieId));
 	}
 
@@ -56,5 +56,22 @@ public class JourFerieController {
 
 		jfRepo.save(nouvJf);
 		return ResponseEntity.ok(nouvJf);
+	}
+
+	@RequestMapping(method = RequestMethod.PUT, path = "/modifier/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> modificationJourFerie(@RequestBody JourFerie nouvJf, @PathVariable("id") int id) {
+
+		JourFerie jf = jfRepo.findById(id);
+
+		LocalDate tmp = LocalDate.now();
+		LocalDate date = LocalDate.parse(nouvJf.getDate(), DateTimeFormatter.ISO_DATE);
+
+		if (date.isBefore(tmp)) {
+			return ResponseEntity.badRequest()
+					.body("Erreur : La date de début doit être au moins supérieur d'un jour au jour actuel");
+		}
+
+		jfRepo.save(jf);
+		return ResponseEntity.ok(jf);
 	}
 }
