@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import dev.entities.Absence;
@@ -15,6 +16,7 @@ import dev.entities.Sexe;
 import dev.entities.StatutEnum;
 import dev.repository.AbsenceRepository;
 import dev.repository.CollaborateurRepository;
+import service.ServiceTraitementDeNuit;
 
 @Component
 public class StartupDataInit {
@@ -24,6 +26,8 @@ public class StartupDataInit {
 
 	@Autowired
 	AbsenceRepository absenceRepo;
+
+	boolean vraie = false;
 
 	@EventListener(ContextRefreshedEvent.class)
 	public void initialiser() {
@@ -76,5 +80,15 @@ public class StartupDataInit {
 			this.absenceRepo.save(new Absence("2018-06-05", "2018-06-10", CongeEnum.CONGE_SANS_SOLDE,
 					"Petite pause entre 2 fights contre des convenants", StatutEnum.INITIALE, collab3));
 		}
+		vraie = true;
+
 	}
+
+	@Scheduled(cron = "0 0 12 ? * *")
+	public void traitementDeNuit() {
+
+		ServiceTraitementDeNuit sTN = new ServiceTraitementDeNuit(this.absenceRepo, this.collaborateurRepo);
+		sTN.init();
+	}
+
 }
