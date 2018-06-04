@@ -85,4 +85,48 @@ public class AbsenceController {
 		return ResponseEntity.ok(nouvAbs);
 	}
 
+	@RequestMapping(method = RequestMethod.PUT, path = "/{matricule}/modifier/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> modificationAbsence(@RequestBody Absence nouvAbs,
+			@PathVariable("matricule") String matricule, @PathVariable("id") int id) {
+
+		Absence abs = absenceRepo.findById(id);
+
+		LocalDate tmp = LocalDate.now();
+		LocalDate debut = LocalDate.parse(nouvAbs.getDateDebut(), DateTimeFormatter.ISO_DATE);
+		LocalDate fin = LocalDate.parse(nouvAbs.getDateFin(), DateTimeFormatter.ISO_DATE);
+
+		if (debut.isBefore(tmp)) {
+			return ResponseEntity.badRequest()
+					.body("Erreur : La date de début doit être au moins supérieur d'un jour au jour actuel");
+		}
+		if (fin.isBefore(debut) || fin.isEqual(debut)) {
+			return ResponseEntity.badRequest().body("Erreur : La date de fin doit être supérieur à la date de début");
+		}
+		if (nouvAbs.getTypeConge().equals(CongeEnum.CONGE_SANS_SOLDE)
+				&& (nouvAbs.getMotif() == null || nouvAbs.getMotif().equals(""))) {
+			return ResponseEntity.badRequest()
+					.body("Erreur : le type de congé est CONGE SANS SOLDE donc le motif est obligatoire");
+		}
+
+		if (nouvAbs.getStatut().equals(StatutEnum.INITIALE) || nouvAbs.getStatut().equals(StatutEnum.REJETEE)) {
+			if (!abs.getDateDebut().equals(nouvAbs.getDateDebut())) {
+				abs.setDateDebut(nouvAbs.getDateDebut());
+			}
+			if (!abs.getDateFin().equals(nouvAbs.getDateFin())) {
+				abs.setDateFin(nouvAbs.getDateFin());
+			}
+			if (!abs.getMotif().equals(nouvAbs.getMotif())) {
+				abs.setMotif(nouvAbs.getMotif());
+			}
+			if (!abs.getTypeConge().equals(nouvAbs.getTypeConge())) {
+				abs.setTypeConge(nouvAbs.getTypeConge());
+			}
+		} else {
+			return ResponseEntity.badRequest()
+					.body("Erreur : status de votre demande incorrect " + nouvAbs.getStatut());
+		}
+
+		absenceRepo.save(abs);
+		return ResponseEntity.ok(abs);
+	}
 }
