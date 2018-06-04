@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import dev.entities.Absence;
@@ -17,6 +18,7 @@ import dev.entities.StatutEnum;
 import dev.repository.AbsenceRepository;
 import dev.repository.CollaborateurRepository;
 import dev.repository.JourFerieRepository;
+import service.ServiceTraitementDeNuit;
 
 @Component
 public class StartupDataInit {
@@ -29,6 +31,8 @@ public class StartupDataInit {
 
 	@Autowired
 	AbsenceRepository absenceRepo;
+
+	boolean vraie = false;
 
 	@EventListener(ContextRefreshedEvent.class)
 	public void initialiser() {
@@ -97,5 +101,15 @@ public class StartupDataInit {
 			this.absenceRepo.save(
 					new Absence("2018-05-21", CongeEnum.RTT_EMPLOYEUR, "Lundi de Pentecôte", StatutEnum.INITIALE));
 		}
+		vraie = true;
+
 	}
+
+	@Scheduled(cron = "0 0 12 ? * *")
+	public void traitementDeNuit() {
+
+		ServiceTraitementDeNuit sTN = new ServiceTraitementDeNuit(this.absenceRepo, this.collaborateurRepo);
+		sTN.init();
+	}
+
 }
