@@ -68,20 +68,19 @@ public class StartupDataInit {
 		}
 
 		if (this.jfRepo.count() <= 0) {
-			this.jfRepo.save(new JourFerie("2018/01/01", "Jour de l'an"));
-			this.jfRepo.save(new JourFerie("2018/04/02", "Lundi de Pâques"));
-			this.jfRepo.save(new JourFerie("2018/05/01", "Fêtes du travail"));
-			this.jfRepo.save(new JourFerie("2018/05/08", "Victoire 1945"));
-			this.jfRepo.save(new JourFerie("2018/05/10", "L'Ascension"));
-			this.jfRepo.save(new JourFerie("2018/05/21", "Lundi de Pentecôte"));
-			this.jfRepo.save(new JourFerie("2018/07/14", "14 Juillet"));
-			this.jfRepo.save(new JourFerie("2018/11/01", "Toussaint"));
-			this.jfRepo.save(new JourFerie("2018/11/11", "Armistice 1918"));
-			this.jfRepo.save(new JourFerie("2018/12/25", "Noël"));
+			this.jfRepo.save(new JourFerie("2018-11-11", "Armistice 1918"));
+			this.jfRepo.save(new JourFerie("2018-01-01", "Jour de l'An"));
+			this.jfRepo.save(new JourFerie("2018-04-02", "Lundi de Pâques"));
+			this.jfRepo.save(new JourFerie("2018-11-01", "Toussaint"));
+			this.jfRepo.save(new JourFerie("2018-05-01", "Fêtes du travail"));
+			this.jfRepo.save(new JourFerie("2018-12-25", "Noël"));
+			this.jfRepo.save(new JourFerie("2018-05-08", "Victoire 1945"));
+			this.jfRepo.save(new JourFerie("2018-05-10", "L'Ascension"));
+			this.jfRepo.save(new JourFerie("2018-07-14", "14 Juillet"));
 		}
 
 		if (this.absenceRepo.count() <= 0) {
-			this.absenceRepo.save(new Absence("2018-05-05", "2018-05-12", CongeEnum.RTT, "VACANCES !!!",
+			this.absenceRepo.save(new Absence("2018-05-05", "2018-05-12", CongeEnum.RTT_EMPLOYE, "VACANCES !!!",
 					StatutEnum.EN_ATTENTE_VALIDATION, collab1));
 			this.absenceRepo.save(new Absence("2018-06-02", "2018-06-15", CongeEnum.CONGE_PAYE, "Pitié, je me meurs",
 					StatutEnum.INITIALE, collab1));
@@ -93,6 +92,10 @@ public class StartupDataInit {
 					"Petit repos à Londre", StatutEnum.EN_ATTENTE_VALIDATION, collab2));
 			this.absenceRepo.save(new Absence("2018-12-24", "2018-12-26", CongeEnum.CONGE_SANS_SOLDE,
 					"Petite pause entre 2 fights contre des convenants", StatutEnum.INITIALE, collab3));
+			this.absenceRepo
+					.save(new Absence("2018-12-24", CongeEnum.RTT_EMPLOYEUR, "Réveillon de Noël", StatutEnum.INITIALE));
+			this.absenceRepo.save(
+					new Absence("2018-05-21", CongeEnum.RTT_EMPLOYEUR, "Lundi de Pentecôte", StatutEnum.INITIALE));
 		}
 	}
 }

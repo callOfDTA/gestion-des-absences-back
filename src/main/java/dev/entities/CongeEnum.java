@@ -9,7 +9,7 @@ public enum CongeEnum {
 	/** The conge paye. */
 	CONGE_PAYE("Congé payé"),
 	/** The rtt. */
-	RTT("RTT"),
+	RTT_EMPLOYE("RTT employé"), RTT_EMPLOYEUR("RTT employeur"),
 	/** The conge sans solde. */
 	CONGE_SANS_SOLDE("Congé sans solde"),
 	/** The mission. */

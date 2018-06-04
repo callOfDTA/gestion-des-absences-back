@@ -41,12 +41,18 @@ public class AbsenceController {
 		return absenceRepo.findByCollaborateurMatricule(matricule);
 	}
 
+	@RequestMapping(method = RequestMethod.GET, params = { "conge" })
+	@ResponseBody
+	public List<Absence> absenceParConge(@RequestParam("conge") CongeEnum typeConge) {
+		return absenceRepo.findByTypeConge(typeConge);
+	}
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public Absence absenceParId(@PathVariable("id") Integer absenceId) {
 		return absenceRepo.findById(absenceId);
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	@ResponseBody
 	public void suppressionabsenceParId(@PathVariable("id") Integer absenceId) {

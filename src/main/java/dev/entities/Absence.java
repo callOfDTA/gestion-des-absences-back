@@ -84,6 +84,14 @@ public class Absence {
 		this.collaborateur = collaborateur;
 	}
 
+	public Absence(String dateDebut, CongeEnum typeConge, String motif, StatutEnum statut) {
+		super();
+		this.dateDebut = dateDebut;
+		this.typeConge = typeConge;
+		this.motif = motif;
+		this.statut = statut;
+	}
+
 	/**
 	 * Gets the id.
 	 *
