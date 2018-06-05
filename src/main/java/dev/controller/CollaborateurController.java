@@ -17,21 +17,37 @@ import dev.entities.Collaborateur;
 import dev.entities.Role;
 import dev.repository.CollaborateurRepository;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CollaborateurController.
+ */
 @RestController()
 @CrossOrigin
 @RequestMapping("/collaborateurs")
 public class CollaborateurController {
 
+	/** The api url. */
 	final String API_URL = "http://app-3d0a5967-9429-444f-907d-cd29c4ee0f0c.cleverapps.io/collegues";
 
+	/** The collab repo. */
 	@Autowired
 	private CollaborateurRepository collabRepo;
 
+	/**
+	 * Récupère la liste des collaborateur
+	 *
+	 * @return liste de collaborateur
+	 */
 	@GetMapping
-	public List<Collaborateur> getVersion() {
+	public List<Collaborateur> getListCollab() {
 		return this.collabRepo.findAll();
 	}
 
+	/**
+	 * Ajouter un collab.
+	 *
+	 * @return the response entity
+	 */
 	@RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> ajouterCollab() {
 
