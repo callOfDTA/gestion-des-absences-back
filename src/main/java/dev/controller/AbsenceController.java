@@ -24,47 +24,94 @@ import dev.entities.StatutEnum;
 import dev.repository.AbsenceRepository;
 import dev.repository.CollaborateurRepository;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AbsenceController.
+ */
 @RestController()
 @CrossOrigin
 @EnableScheduling
 @RequestMapping("/absences")
 public class AbsenceController {
 
+	/** The absence repo. */
 	@Autowired
 	private AbsenceRepository absenceRepo;
 
+	/** The collab repo. */
 	@Autowired
 	private CollaborateurRepository collabRepo;
 
+	/**
+	 * Récupère la liste des absence
+	 *
+	 * @return the list absence
+	 */
 	@GetMapping
 	public List<Absence> getListAbsence() {
 		return this.absenceRepo.findAll();
 	}
 
+	/**
+	 * Récupère la liste des absence du collaborateur
+	 *
+	 * @param matricule
+	 *            the matricule
+	 * @return the list
+	 */
 	@RequestMapping(method = RequestMethod.GET, params = { "collaborateur" })
 	@ResponseBody
 	public List<Absence> absenceParCollaborateur(@RequestParam("collaborateur") String matricule) {
 		return absenceRepo.findByCollaborateurMatricule(matricule);
 	}
 
+	/**
+	 * Absence par conge.
+	 *
+	 * @param typeConge
+	 *            the type conge
+	 * @return the list
+	 */
 	@RequestMapping(method = RequestMethod.GET, params = { "conge" })
 	@ResponseBody
 	public List<Absence> absenceParConge(@RequestParam("conge") CongeEnum typeConge) {
 		return absenceRepo.findByTypeConge(typeConge);
 	}
 
+	/**
+	 * Récupère une absence grâce à son id
+	 *
+	 * @param absenceId
+	 *            the absence id
+	 * @return the absence
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public Absence absenceParId(@PathVariable("id") Integer absenceId) {
 		return absenceRepo.findById(absenceId);
 	}
 
+	/**
+	 * Supprime une absence grâce à son id
+	 *
+	 * @param absenceId
+	 *            the absence id
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	@ResponseBody
 	public void suppressionabsenceParId(@PathVariable("id") Integer absenceId) {
 		absenceRepo.delete(absenceRepo.findById(absenceId));
 	}
 
+	/**
+	 * Ajout absence.
+	 *
+	 * @param nouvAbs
+	 *            the nouv abs
+	 * @param matricule
+	 *            the matricule
+	 * @return the response entity
+	 */
 	@RequestMapping(method = RequestMethod.POST, path = "/{matricule}/nouvelle", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> ajoutAbsence(@RequestBody Absence nouvAbs, @PathVariable("matricule") String matricule) {
 
@@ -91,6 +138,17 @@ public class AbsenceController {
 		return ResponseEntity.ok(nouvAbs);
 	}
 
+	/**
+	 * Modification absence.
+	 *
+	 * @param nouvAbs
+	 *            the nouv abs
+	 * @param matricule
+	 *            the matricule
+	 * @param id
+	 *            the id
+	 * @return the response entity
+	 */
 	@RequestMapping(method = RequestMethod.PUT, path = "/{matricule}/modifier/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> modificationAbsence(@RequestBody Absence nouvAbs,
 			@PathVariable("matricule") String matricule, @PathVariable("id") int id) {
